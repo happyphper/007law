@@ -1,0 +1,82 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+        "navigationStyle":"custom"
+			}
+		},
+		{
+			"path" : "pages/service/service",
+			"style" : 
+			{
+				"navigationBarTitleText" : "服务列表",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/me/me",
+			"style" : 
+			{
+				"navigationBarTitleText" : "个人中心",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/login/login",
+			"style" : 
+			{
+				"navigationBarTitleText" : "登录",
+				"enablePullDownRefresh" : false
+			}
+		},
+    {
+      "path" : "pages/serviceDetail/serviceDetail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "服务详情",
+				"enablePullDownRefresh" : false
+			}
+    },
+    {
+      "path" : "pages/userCenter/userCenter",
+			"style" : 
+			{
+				"navigationBarTitleText" : "个人信息",
+				"enablePullDownRefresh" : false
+			}
+    }
+	],
+	"tabBar": {
+		"color": "#cdcdcd",
+		"selectedColor": "#7DC9BF",
+    "borderStyle":"white",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "咨询",
+				"iconPath": "static/tabbar/chat.png",
+				"selectedIconPath": "static/tabbar/chat_active.png"
+			},
+			{
+				"pagePath": "pages/service/service",
+				"text": "服务",
+				"iconPath": "static/tabbar/service.png",
+				"selectedIconPath": "static/tabbar/service_active.png"
+			},
+			{
+				"pagePath": "pages/me/me",
+				"text": "我的",
+				"iconPath": "static/tabbar/me.png",
+				"selectedIconPath": "static/tabbar/me_active.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "007法律平台",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#F8F8F8",
+    "backgroundTextStyle":"dark"
+	},
+	"uniIdRouter": {}
+}
