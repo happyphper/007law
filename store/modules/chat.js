@@ -22,9 +22,8 @@ export default {
       role: "assistant",
       content: "",
     },
-    newMessage: '',
-    questions: [],
-  },
+    newMessage: ''
+    },
   getters: {},
   mutations: {
     // 覆盖会话
@@ -109,9 +108,6 @@ export default {
     },
     UPDATE_NEW_MESSAGE(state, val) {
       state.newMessage = val
-    },
-    SET_QUESTIONS(state, val) {
-      state.questions = val
     }
   },
   actions: {
@@ -121,7 +117,6 @@ export default {
         .index()
         .then((res) => {
           commit("FETCH_CONVERSATIONS", res.data);
-          commit("SET_QUESTIONS", res.meta.questions);
         })
         .catch((e) => {
           console.log(e);
