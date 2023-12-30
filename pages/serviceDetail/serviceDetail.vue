@@ -22,7 +22,7 @@
 import {mapState} from 'vuex'
 
 	export default {
-    name: "Service",
+    name: "ServiceDetail",
     components: {},
     data() {
       return {
@@ -34,7 +34,7 @@ import {mapState} from 'vuex'
     },
     computed: {
       ...mapState({
-        dataSource: (state) => state.service.data,
+        dataSource: (state) => state.service.services,
       })
     },
 		methods: {}
