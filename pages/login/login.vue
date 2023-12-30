@@ -1,10 +1,20 @@
 <template>
   <view class="login-container">
-    <text class="title">登录007法律平台 专业律师排忧解难</text>
+    <text class="title">007法律平台</text>
     
-    <image src="/static/logo.png" mode="aspectFit" class="logo"></image>
+    <image src="/static/logo.jpeg" class="logo"></image>
 
-    <button class="btn" open-type="getPhoneNumber" @getphonenumber="handlePhone">微信授权登录</button>
+    <text class="subtitle">登录 007 法律平台 专业律师为您排忧解难</text>
+
+    <view class="btn-container">
+      <text>
+        <text>登录即代表您同意</text>
+        <text class="link">《服务协议》</text>
+        <text>和</text>
+        <text class="link">《隐私协议》</text>
+      </text>
+      <button class="btn" open-type="getPhoneNumber" @getphonenumber="handlePhone">微信授权登录</button>
+    </view>
   </view>
 </template>
 
@@ -67,6 +77,7 @@ export default {
 
 <style scoped lang="scss">
 .login-container {
+  background-color: #FFFFFF;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -76,23 +87,33 @@ export default {
 .title {
   font-weight: bold;
   font-size: 1.4rem;
-  margin: 4rem 0 2rem 0;
+  margin: 0 0 2rem 0;
+}
+.subtitle{
+  margin: 2rem 0 2rem 0;
 }
 .logo {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  padding: 2rem;
-  background-color: #fff;
   display: flex;
   justify-content: center;
 }
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 5rem;
+}
 .btn {
-  margin-top: 2rem;
+  margin-top: 1rem;
   background-color: $btn-green-color;
   color: white;
   width: 80%;
-  position: absolute;
-  bottom: 5rem;
+}
+.link {
+  color: $uni-color-primary;
 }
 </style>

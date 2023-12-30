@@ -18,7 +18,7 @@ export default {
         console.log("uni.login调用失败", err);
       },
     });
-
+    // 获取预置问题
     this.$store.dispatch("fetchQuestions")
   },
   onShow: function () {

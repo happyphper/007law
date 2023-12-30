@@ -20,7 +20,7 @@
     },
     computed: {
       ...mapState({
-        dataSource: (state) => state.service.data,
+        dataSource: (state) => state.service.services,
       })
     },
 		methods: {

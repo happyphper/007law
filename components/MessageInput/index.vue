@@ -1,5 +1,5 @@
 <template>
-  <view class="container">
+  <view class="container" :style="{bottom:  keyboardHeight>0 ? '1rem' : '0'}">
     <view class="input-container">
       <view class="btn"  @click="handleUpload">
         <uni-tooltip content="上传合同模板" placement="left">
@@ -15,17 +15,17 @@
       />
 
       <view class="btn">
-        <uni-tooltip content="发送" placement="right">
+        <!-- <uni-tooltip content="发送" placement="right"> -->
           <uni-icons
             type="paperplane"
             size="24"
             @click="sendMessage"
             v-if="!loading"
           ></uni-icons>
-        </uni-tooltip>
-        <uni-tooltip content="拼命思考中..." placement="right">
+        <!-- </uni-tooltip> -->
+        <!-- <uni-tooltip content="拼命思考中..." placement="right"> -->
           <Loading :loading="loading" v-if="loading"></Loading>
-        </uni-tooltip>
+        <!-- </uni-tooltip> -->
       </view>
     </view>
   </view>

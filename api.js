@@ -1,5 +1,5 @@
-const BASE_URL = "http://api.007law.test:800/api";
-// const BASE_URL = 'https://law.longbao.wang/api';
+// const BASE_URL = "http://api.007law.test:800/api";
+const BASE_URL = 'https://law.longbao.wang/api';
 
 // 请求拦截器
 const requestInterceptor = (headers) => {
