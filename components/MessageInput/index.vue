@@ -1,17 +1,14 @@
 <template>
   <view class="container" :style="{bottom:  keyboardHeight>0 ? '1rem' : '0'}">
     <view class="input-container">
-      <view class="btn"  @click="handleUpload">
-        <uni-tooltip content="上传合同模板" placement="left">
-          <uni-icons type="paperclip" size="24"></uni-icons>
-        </uni-tooltip>
-      </view>
+      <UploadDoc></UploadDoc>
 
       <input
         v-model="newMessage"
         @confirm="sendMessage"
         placeholder="请输入您想咨询的问题"
         placeholder-style="color:#c1c1c1"
+        maxlength="-1"
       />
 
       <view class="btn">
@@ -24,7 +21,13 @@
           ></uni-icons>
         <!-- </uni-tooltip> -->
         <!-- <uni-tooltip content="拼命思考中..." placement="right"> -->
-          <Loading :loading="loading" v-if="loading"></Loading>
+        <uni-icons
+          type="minus"
+          size="24"
+          @click="stopMessage"
+          v-else
+        ></uni-icons>
+          <!-- <Loading :loading="loading" v-if="loading"></Loading> -->
         <!-- </uni-tooltip> -->
       </view>
     </view>
@@ -33,11 +36,12 @@
 
 <script>
 import Loading from "../../components/Loading";
+import UploadDoc from "./UploadDoc";
 import { mapState } from "vuex";
 
 export default {
   name: "MessageInput",
-  components: { Loading },
+  components: { Loading, UploadDoc },
   computed: {
     ...mapState({
       loading: (state) => state.chat.loading,
@@ -97,29 +101,22 @@ export default {
       }
 
       this.$store.dispatch("storeConversation", this.newMessage);
+    },
 
-      this.newMessage = "";
-    },
-    handleUpload() {
-      if (!this.hasLogin) {
-        uni.showToast({
-          title: "登录后可以免费试用",
-          duration: 1000,
-          icon: "none",
-        });
-        setTimeout(() => uni.navigateTo({ url: "/pages/login/login" }), 1000);
-        return;
-      }
-      // TODO
-      uni.showToast({
-        title: "正在开发中...",
-        duration: 2000,
-        icon: "none",
-      });
-    },
     keyboardHeightChange(e) {
       this.keyboardHeight = e.keyboardHeight;
     },
+    stopMessage() {
+      const that = this
+      uni.showModal({
+        title: '是否要停止生成？',
+        success:  function(res) {
+          if (res.confirm) {
+            that.$store.dispatch("closeRequestTask")
+          } 
+          }
+      });
+    }
   },
 };
 </script>

@@ -27,9 +27,9 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "",
-        "navigationBarBackgroundColor": "#FFFFFF",
+				"navigationBarBackgroundColor": "#FFFFFF",
 				"enablePullDownRefresh" : false,
-        "backgroundColor":"#FFFFFF"
+				"backgroundColor":"#FFFFFF"
 			}
 		},
     {
@@ -46,6 +46,15 @@
 			{
 				"navigationBarTitleText" : "个人信息",
 				"enablePullDownRefresh" : false
+			}
+    },
+    {
+      "path" : "pages/docContent/docContent",
+			"style" : 
+			{
+				"navigationBarTitleText" : "文档内容",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor": "#EFEEEE"
 			}
     }
 	],
@@ -78,7 +87,7 @@
 		"navigationBarTitleText": "007法律平台",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#F8F8F8",
-    "backgroundTextStyle":"dark"
+		"backgroundTextStyle":"dark"
 	},
 	"uniIdRouter": {}
 }

@@ -59,7 +59,7 @@ export const streamRequest = (
 ) => {
   // 应用请求拦截器
   headers = requestInterceptor(headers);
-  console.log("request", headers);
+  // console.log("request", headers);
   const requestTask = uni.request({
     url: BASE_URL + url,
     timeout: 15000,
@@ -69,14 +69,18 @@ export const streamRequest = (
     header: headers || {},
     enableChunked: true,
     success: (res) => {
-      console.log("result", res);
+      // console.log("result", res);
     },
     fail: (err) => {
+      if (err.errMsg === "request:fail abort") {
+        return;
+      }
+      console.log(err.errMsg)
       uni.showToast({
-        title: err,
+        title: "服务出小差了",
         duration: 5000,
       });
-      console.log(err);
+
     },
   });
 
@@ -92,7 +96,7 @@ export const streamRequest = (
     for (const iterator of text.split(`\n`)) {
       let str = iterator.trim(`\n`);
       str = iterator.trim();
-      console.log(str);
+      // console.log(str);
       // JSON 数据
       if (str[0] === "{" && str[iterator.length - 1] === "}") {
         const data = JSON.parse(str);
@@ -100,6 +104,8 @@ export const streamRequest = (
       }
     }
   });
+
+  return requestTask;
 };
 
 // 上传

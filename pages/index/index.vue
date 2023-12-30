@@ -31,9 +31,9 @@
         </view>
 
         <MessageItem
-          v-show="loading && currentMessage.content.length > 0"
+          v-show="loading"
           :role="currentMessage.role"
-          :content="currentMessage.content"
+          :content="currentMessage.content && currentMessage.content.length > 0 ? currentMessage.content : '思考中...'"
         ></MessageItem>
 
         <view class="chat-tips">

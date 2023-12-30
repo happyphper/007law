@@ -2,7 +2,6 @@ import * as chatApi from "../../apis/chat";
 
 // 滚动屏幕到下方
 function scrollToBottom() {
-  console.log(111)
   setTimeout(() => {
     uni.pageScrollTo({
       scrollTop: 999999, // 一个足够大的值，确保能够滑动到底部
@@ -22,14 +21,14 @@ export default {
       role: "assistant",
       content: "",
     },
-    newMessage: ''
+    newMessage: '',
+    requestTask: null
     },
   getters: {},
   mutations: {
     // 覆盖会话
     FETCH_CONVERSATIONS(state, data) {
       state.conversations = data;
-      console.log(data, state.selectedConversationId);
       if (data.length > 0 && state.selectedConversationId === 0) {
         state.selectedConversationId = data[0].id;
         chatApi
@@ -70,7 +69,6 @@ export default {
     // 隐藏加载
     HIDE_LOADING(state) {
       state.loading = false;
-      console.log("loading", state.loading)
     },
     // 删除会话
     DEL_CONVERSATION(state, id) {
@@ -97,7 +95,8 @@ export default {
     // 会话结束
     END_CURRENT_MESSAGE(state) {
       state.messages.push(state.currentMessage);
-      state.currentMessage = null;
+      state.currentMessage = {};
+      state.requestTask = null;
     },
     LOGOUT(state) {
       state.loading = false
@@ -108,6 +107,16 @@ export default {
     },
     UPDATE_NEW_MESSAGE(state, val) {
       state.newMessage = val
+    },
+    SET_REQUEST_TASK(state, val) {
+      state.requestTask = val
+    },
+    CANCEL_REQUEST(state) {
+      state.loading = false;
+      if (!state.requestTask) {
+        return;
+      }
+      state.requestTask.abort()
     }
   },
   actions: {
@@ -147,7 +156,6 @@ export default {
         content,
         time,
       }) {
-        console.log(time, code, cid, content)
         switch (code) {
           case 1:
             // 会话开始
@@ -169,7 +177,9 @@ export default {
         }
       };
 
-      chatApi.store(state.selectedConversationId, content, callback)
+      const requestTask = chatApi.store(state.selectedConversationId, content, callback)
+
+      commit('SET_REQUEST_TASK', requestTask)
 
       dispatch('decrementChatCount')
     },
@@ -191,6 +201,9 @@ export default {
     },
     logout({state, commit}) {
       uni.clearStorage();
+    },
+    closeRequestTask({commit}) {
+      commit('CANCEL_REQUEST')
     }
   },
 };
